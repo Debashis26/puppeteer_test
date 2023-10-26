@@ -12,10 +12,12 @@ const puppeteer = require("puppeteer");
 console.log("Puppeteer started....");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     const browser = yield puppeteer.launch({
+        args: ['--start-maximized'],
         headless: false,
         slowMo: 70,
     });
     const page = yield browser.newPage();
+    yield page.setViewport({ width: 1080, height: 720 });
     yield page.goto("https://www.google.com/");
     yield page.waitForTimeout(1000);
     const searchSelector = 'textarea[title="Search"]';

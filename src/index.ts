@@ -4,10 +4,12 @@ console.log("Puppeteer started....");
 
 (async () => {
   const browser = await puppeteer.launch({
+    args: ['--start-maximized'],
     headless: false,
     slowMo: 70,
   });
   const page = await browser.newPage();
+  await page.setViewport({ width: 1920, height: 720 });
   await page.goto("https://www.google.com/");
   await page.waitForTimeout(1000);
 
