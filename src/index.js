@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const puppeteer = require("puppeteer");
-console.log("Puppeteer started....");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     const browser = yield puppeteer.launch({
         args: ['--start-maximized'],
@@ -17,12 +16,13 @@ console.log("Puppeteer started....");
         slowMo: 70,
     });
     const page = yield browser.newPage();
-    yield page.setViewport({ width: 1080, height: 720 });
     yield page.goto("https://www.google.com/");
-    yield page.waitForTimeout(1000);
+    yield page.setViewport({ width: 1360, height: 1080 });
+    yield page.waitForTimeout(2000);
     const searchSelector = 'textarea[title="Search"]';
     const resultSelector = '.BYM4Nd [role="text"]';
     yield page.waitForSelector(searchSelector);
+    yield page.waitForTimeout(2000);
     yield page.click(searchSelector, { clickCount: 1 });
     yield page.type(searchSelector, "chimera technologies");
     yield page.keyboard.press("Enter");

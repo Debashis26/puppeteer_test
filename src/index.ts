@@ -1,7 +1,5 @@
 const puppeteer = require("puppeteer");
 
-console.log("Puppeteer started....");
-
 (async () => {
   const browser = await puppeteer.launch({
     args: ['--start-maximized'],
@@ -9,15 +7,15 @@ console.log("Puppeteer started....");
     slowMo: 70,
   });
   const page = await browser.newPage();
-  await page.setViewport({ width: 1920, height: 720 });
   await page.goto("https://www.google.com/");
-  await page.waitForTimeout(1000);
+  await page.setViewport({ width: 1360, height: 1080 });
+  await page.waitForTimeout(2000);
 
   const searchSelector = 'textarea[title="Search"]';
   const resultSelector = '.BYM4Nd [role="text"]';
 
   await page.waitForSelector(searchSelector);
-
+  await page.waitForTimeout(2000)
   await page.click(searchSelector, { clickCount: 1 });
 
   await page.type(searchSelector, "chimera technologies");
